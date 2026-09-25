@@ -1,7 +1,7 @@
-# TriageLane — CT Hemorrhage Detection Lane
+# AuraLane — CT Hemorrhage Detection Lane
 
 A CT-based intracranial hemorrhage detection and urgency-triage pipeline for
-the TriageLane system.
+the AuraLane system.
 
 The pipeline processes a DICOM CT study, estimates per-slice hemorrhage
 likelihood, aggregates slice-level predictions into a study-level score, and

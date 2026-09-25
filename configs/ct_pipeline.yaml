@@ -1,0 +1,53 @@
+input:
+  expected_modality: "CT"
+
+model:
+  name: "DifeiT/rsna-intracranial-hemorrhage-detection"
+  revision: null
+
+calibration:
+  temperature: 1.645
+
+aggregation:
+  k_fraction: 0.3
+
+lanes:
+  boundary_margin: 0.05
+  thresholds:
+    critical: 0.85
+    urgent: 0.65
+    expedited: 0.35
+  boundary_names:
+    "0.85": "Critical/Urgent"
+    "0.65": "Urgent/Expedited"
+    "0.35": "Expedited/Routine"
+
+urgency_weights:
+  epidural: 1.25
+  subdural: 1.15
+  subarachnoid: 1.15
+  intraparenchymal: 1.05
+  intraventricular: 1.00
+
+mismatch_check:
+  low_urgency_weight_threshold: 1.05
+  high_confidence_threshold: 0.85
+
+windows:
+  brain:
+    center: 40
+    width: 80
+  subdural:
+    center: 100
+    width: 200
+  bone:
+    center: 600
+    width: 2800
+
+id2label:
+  "0": "epidural"
+  "1": "intraparenchymal"
+  "2": "intraventricular"
+  "3": "normal"
+  "4": "subarachnoid"
+  "5": "subdural"

@@ -1,0 +1,63 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# =========================
+# Patient / Study Data
+# NEVER COMMIT DICOM DATA
+# =========================
+data/raw/
+data/demo/
+data/processed/
+
+*.dcm
+*.nii
+*.nii.gz
+
+# =========================
+# Generated Outputs
+# =========================
+outputs/
+results.json
+results.csv
+run_log.txt
+*.log
+
+# =========================
+# Model Weights / HF Cache
+# =========================
+models/
+*.bin
+*.safetensors
+*.pt
+*.pth
+.cache/
+
+# Hugging Face local cache
+huggingface/
+hf_cache/
+
+# =========================
+# Secrets / Credentials
+# =========================
+.env
+.env.*
+kaggle.json
+*.pem
+*credentials*
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+.vscode/
+.idea/

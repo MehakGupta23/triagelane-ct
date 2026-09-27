@@ -113,3 +113,43 @@ def assign_lane(
         "sort_score": urgency_study_score,
         "abstain_reason": None,
     }
+
+def lane_decision_reason(
+    lane,
+    urgency_study_score,
+    dominant_subtype,
+    k,
+    n_slices,
+):
+    lane_threshold_text = {
+        LANE_CRITICAL: (
+            f"at or above the critical threshold "
+            f"({CRITICAL_THRESHOLD})"
+        ),
+        LANE_URGENT: (
+            f"between the urgent threshold "
+            f"({URGENT_THRESHOLD}) and the critical threshold "
+            f"({CRITICAL_THRESHOLD})"
+        ),
+        LANE_EXPEDITED: (
+            f"between the expedited threshold "
+            f"({EXPEDITED_THRESHOLD}) and the urgent threshold "
+            f"({URGENT_THRESHOLD})"
+        ),
+        LANE_ROUTINE: (
+            f"below the expedited threshold "
+            f"({EXPEDITED_THRESHOLD})"
+        ),
+    }
+
+    threshold_text = lane_threshold_text.get(lane)
+
+    if threshold_text is None:
+        return None
+
+    return (
+        f"Urgency-weighted study score "
+        f"{urgency_study_score:.3f} is {threshold_text}, "
+        f"driven by a {dominant_subtype} finding across "
+        f"the top {k} of {n_slices} slices."
+    )

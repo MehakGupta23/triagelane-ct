@@ -29,6 +29,12 @@ def main():
         help="Directory where result.json and run.log will be written.",
     )
 
+    parser.add_argument(
+        "--localize",
+        action="store_true",
+        help="Generate Grad-CAM localization for the top-scoring slice.",
+    )
+    
     args = parser.parse_args()
 
     input_dir = Path(args.input)
@@ -38,6 +44,8 @@ def main():
         parents=True,
         exist_ok=True,
     )
+
+    localization_dir = output_dir / "gradcam"
 
     log_file = output_dir / "run.log"
 
@@ -57,7 +65,13 @@ def main():
             )
 
         result = score_study_from_folder(
-            str(input_dir)
+            str(input_dir),
+            generate_localization=args.localize,
+            localization_output_dir=(
+                str(localization_dir)
+                if args.localize
+                else None
+            ),
         )
 
         result_file = output_dir / "result.json"

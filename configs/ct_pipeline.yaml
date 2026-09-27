@@ -33,6 +33,9 @@ mismatch_check:
   low_urgency_weight_threshold: 1.05
   high_confidence_threshold: 0.85
 
+gradcam:
+  localization_threshold: 0.5
+
 windows:
   brain:
     center: 40
